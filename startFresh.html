@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+   <head>
+       <style type="text/css">
+           #otherOption {
+               display:none;
+           }
+           
+           span {
+               color:red;
+           }
+       </style>
+   </head>
+    <body>
+        <main>
+           
+           <form action="#" name="billingInformation" id="billingInformation">
+               <label for="name">Name:</label>
+               <input type="text" name="name" id="name" placeholder="Benjamin Franklin">
+               <span>*</span><br>
+               
+               <label for="addressType">Address Type:</label>
+               <select name="addressType" id="addressType">
+                   <option value="">Please select a type of residence</option>
+                   <option>House</option>
+                   <option>Apartment</option>
+                   <option>Business</option>
+                   <option>Campus</option>
+                   <option>Hotel</option>
+                   <option>Dorm</option>
+                   <option>Other</option>
+               </select>
+               <span>*</span>
+               <div id="otherOption"><p>What kind of dwelling is it?</p><input type="text" name="otherDwelling" id="otherDwelling" /></div><br>
+               
+               <label for="addressStreet">Street:</label>
+               <input type="text" name="addressStreet" id="addressStreet" placeholder="843 Chestnut St.">
+               <span>*</span><br>
+               
+               <label for="addressNumber">Apt/Suite/Room Number:</label>
+               <input type="text" name="addressNumber" id="addressNumber">
+               <span>(optional)</span> <br>
+               
+               <label for="city">City:</label>
+               <input type="text" name="city" id="city" placeholder="Philadelphia">
+               <span>*</span><br>
+               
+               <label for ="state">State:</label>
+               <input type="text" name="state" id="state" placeholder="PA">
+               <span>*</span><br>
+               
+               <label for="zip">Zip Code:</label>
+               <input type="text" name="zip" id="zip" placeholder="19107">
+               <span>*</span><br>
+               
+               <label for="phone">Phone Number:</label>
+               <input type="text" name="phone" id="phone" placeholder="215-629-9900">
+               <span>*</span><br>
+               
+               <label for="email">Email:</label>
+               <input type="text" name="email" id="email" placeholder="historic@benfranklin.com">
+               <span>*</span> <br>
+               
+               <input type="button" id="inputMyInfo" value="Finished Building Pizza">
+           </form>
+            
+        </main>
+        
+        <script src="freshScript.js"></script>
+    </body>
+</html>
