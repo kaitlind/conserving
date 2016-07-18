@@ -1,6 +1,8 @@
 <!doctype html>
-<html>
+<html lang="en">
    <head>
+      <meta charset="utf-8" />
+        <title>Pizza Order Form</title>
        <style type="text/css">
            #otherOption {
                display:none;
@@ -9,12 +11,19 @@
            span {
                color:red;
            }
+           
+           #cheeseTypes, #sauceDropDown{
+               display: none;
+           }
+          
        </style>
    </head>
     <body>
         <main>
            
            <form action="#" name="billingInformation" id="billingInformation">
+              <fieldset>
+              <legend>Billing Information</legend>
                <label for="name">Name:</label>
                <input type="text" name="name" id="name" placeholder="Benjamin Franklin">
                <span>*</span><br>
@@ -60,6 +69,40 @@
                <label for="email">Email:</label>
                <input type="text" name="email" id="email" placeholder="historic@benfranklin.com">
                <span>*</span> <br>
+               </fieldset>
+               
+               <fieldset>
+                  <legend>Pizza Choices</legend>
+                  
+                  <h4>Crust</h4>
+                  <label for="handTossed"><input type="radio" name="crust" id="handTossed" value="Hand Tossed">Hand Tossed</label>
+                  <label for="thinCrust"><input type="radio" name="crust" id="thinCrust" value="Thin Crust">Thin Crust</label>
+                  <label for="nyStyle"><input type="radio" name="crust" id="nyStyle" value="New York Style">New York Style</label>
+                  <label for="glutenFree"><input type="radio" name="crust" id="glutenFree" value="Gluten Free">Gluten Free</label>
+                  <span>*</span>
+                  
+                  <h4>Size</h4>
+                  <select name="crustSizes" id="crustSizes"></select>
+                 
+                 
+                 <h4>Cheese</h4>
+                  <select name="cheeseTypes" id="cheeseTypes">
+                     
+                      <option value="0">Light</option>
+                      <option value="0" select>Normal</option>
+                      <option value="2.99">Extra (+$2.99)</option>
+                      <option value="3.99">Double (+$3.99)</option>
+                  </select>
+                  
+                  <h4>Sauce</h4>
+                  <select name="sauceDropDown" id="sauceDropDown">
+                     <option value="">Choose a Sauce</option>
+                      <option value="0">Regular Tomato</option>
+                      <option value="0.99">Hearty Tomato  $0.99</option>
+                      <option value="1.99">BBQ Sauce $1.99</option>
+                  </select>
+                   
+               </fieldset>
                
                <input type="button" id="inputMyInfo" value="Finished Building Pizza">
            </form>
