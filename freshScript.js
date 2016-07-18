@@ -63,93 +63,18 @@ var populateCrusts = function(){
 
 };
 
-/*
-var moveTo = function(){
-    
-    var dropDownOptions = x('crustSizes').value;
-    var cheeseDropDown = x('cheeseTypes');
-    var cheeseDropDownVal = x('cheeseTypes').value;
-    cheeseDropDownVal = '';
-    var sauceDropDown = x('sauceTypes');
-    
-    console.log(dropDownOptions);
-    
-    if(dropDownOptions == ''){
-            cheeseDropDown.disabled = true;
-        } else {
-            cheeseDropDown.disabled = false;
-            //sauceDropDown.disabled = false;
-        }
-    
-    if(cheeseDropDown.changed){
-        sauceDropDown.disabled = false;
+
+var moveToAll = function(){
+    var dropDownSelect = x('crustSizes').value;
+    var allAtOnce = x('allAtOnce');
+        
+    if(dropDownSelect == ''){
+        allAtOnce.style.display ="none"
     } else {
-        sauceDropDown.disabled = true;
-    }
-    
-    console.log(cheeseDropDown);
-//    
-//     if (cheeseDropDownVal == ''){
-//            sauceDropDown.disabled = true;
-//        } else {
-//            sauceDropDown.disabled = false;
-//        }
-//    
-//    x('crustSizes').onchange = moveToCheese;
-//
-//    var moveToCheese = function(){
-//        if(dropDownSelect == ''){
-//            cheeseDropDown.disabled = true;
-//        } else {
-//            cheeseDropDown.disabled = false;
-//        }    
-//    };
-//
-//    cheeseDropDown.onchange = moveToSauce;
-//
-//    var moveToSauce = function(){
-//        console.log(cheeseDropDownVal)
-//
-//        if (cheeseDropDownVal == ''){
-//            sauceDropDown.disabled = true;
-//        } else {
-//            sauceDropDown.disabled = false;
-//                }
-//    };
-
-    
+        allAtOnce.style.display = "block";
+    }    
 };
-*/
 
-    var moveToCheese = function(){
-        var dropDownSelect = x('crustSizes').value;
-        var cheeseDropDown = x('cheeseTypes');
-        cheeseDropDown.value = 0;
-        
-        if(dropDownSelect == ''){
-            cheeseDropDown.style.display = "none"
-        } else {
-            cheeseDropDown.style.display = "block";
-        }    
-        
-        console.log(cheeseDropDown.value);
-    };
-
-
-    var moveToSauce = function(){
-        var cheeseDropDownVal = x('cheeseTypes').value;
-        var sauceDropDown = x('sauceDropDown');
-        
-        
-
-        if (cheeseDropDownVal == ''){
-            sauceDropDown.style.display ="none"
-        } else {
-            sauceDropDown.style.display = "block";
-        }
-        
-        console.log(cheeseDropDownVal);
-    };
 
 
             
@@ -170,6 +95,12 @@ var submitInfo = function(){
         var zipPattern = /^\d{5}?$/;
         var phonePattern = /^\d{3}-\d{3}-\d{4}$/;
         var statePattern = /^[a-zA-Z]{2}$/;
+    
+        var handTossedCrust = x('handTossed');
+        var thinCrustPizza = x('thinCrust');
+        var newYorkCrust = x('nyStyle');
+        var glutenFreeCrust = x('glutenFree');
+        var sizeValue = x('crustSizes').value;
     
     
     //Validate Name            
@@ -233,6 +164,20 @@ var submitInfo = function(){
         } else {
             x('phone').nextElementSibling.firstChild.nodeValue = '';
         }
+    //Validate Dough and Size is Checked
+        if(handTossedCrust.checked || thinCrustPizza.checked || newYorkCrust.checked || glutenFreeCrust.checked){
+            x('crustLabel').nextElementSibling.firstChild.nodeValue = '';
+        } else {
+            x('crustLabel').nextElementSibling.firstChild.nodeValue = 'This field is required.';
+            isValid = false;
+        }
+    //Validate Size is chosen
+        if (sizeValue == '' || sizeValue == ' '){
+            x('sizeLabel').nextElementSibling.firstChild.nodeValue = 'This field is required.';
+            isValid = false;
+        } else {
+            x('sizeLabel').nextElementSibling.firstChild.nodeValue = '';
+        }
     //Validate Email 
         var isEmail = function(y){
             var parts = y.split('@');
@@ -293,12 +238,7 @@ var x = function(id){
     x('thinCrust').onchange = populateCrusts;
     x('nyStyle').onchange = populateCrusts;
     x('glutenFree').onchange = populateCrusts;
-    
-    x('crustSizes').onchange = moveToCheese;
-    //x('crustSizes').onchange = moveTo;
-    x('cheeseDropDown').onchange = moveToSauce;
-    
-    
+    x('crustSizes').onchange = moveToAll;
 };
 
 //x('crustSizes').addEventListener('change', moveToCheese, false);

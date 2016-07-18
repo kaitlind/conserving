@@ -4,23 +4,23 @@
       <meta charset="utf-8" />
         <title>Pizza Order Form</title>
        <style type="text/css">
-           #otherOption {
+           #otherOption, #allAtOnce {
                display:none;
            }
            
            span {
                color:red;
            }
-           
-           #cheeseTypes, #sauceDropDown{
-               display: none;
+           #totalPrice {
+               text-align: right;
+               font-size: 32px;
            }
           
        </style>
    </head>
     <body>
         <main>
-           
+           <aside id="totalPrice">This is your current Price: [REMEMBER TO UPDATE]</aside>
            <form action="#" name="billingInformation" id="billingInformation">
               <fieldset>
               <legend>Billing Information</legend>
@@ -74,34 +74,47 @@
                <fieldset>
                   <legend>Pizza Choices</legend>
                   
-                  <h4>Crust</h4>
+                  <h4 id="crustLabel">Crust</h4><span>*</span>
                   <label for="handTossed"><input type="radio" name="crust" id="handTossed" value="Hand Tossed">Hand Tossed</label>
                   <label for="thinCrust"><input type="radio" name="crust" id="thinCrust" value="Thin Crust">Thin Crust</label>
                   <label for="nyStyle"><input type="radio" name="crust" id="nyStyle" value="New York Style">New York Style</label>
                   <label for="glutenFree"><input type="radio" name="crust" id="glutenFree" value="Gluten Free">Gluten Free</label>
-                  <span>*</span>
+                  <span></span>
                   
-                  <h4>Size</h4>
+                  <h4 id="sizeLabel">Size</h4>
+                  <span>*</span>
                   <select name="crustSizes" id="crustSizes"></select>
                  
-                 
-                 <h4>Cheese</h4>
-                  <select name="cheeseTypes" id="cheeseTypes">
-                     
-                      <option value="0">Light</option>
-                      <option value="0" select>Normal</option>
-                      <option value="2.99">Extra (+$2.99)</option>
-                      <option value="3.99">Double (+$3.99)</option>
-                  </select>
-                  
-                  <h4>Sauce</h4>
-                  <select name="sauceDropDown" id="sauceDropDown">
-                     <option value="">Choose a Sauce</option>
-                      <option value="0">Regular Tomato</option>
-                      <option value="0.99">Hearty Tomato  $0.99</option>
-                      <option value="1.99">BBQ Sauce $1.99</option>
-                  </select>
-                   
+                     <div id="allAtOnce">
+                         <h4>Cheese</h4>
+                          <select name="cheeseTypes" id="cheeseTypes">
+                              <option value="0">Light</option>
+                              <option value="0" selected="selected">Normal</option>
+                              <option value="2.99">Extra (+$2.99)</option>
+                              <option value="3.99">Double (+$3.99)</option>
+                          </select>
+
+                          <h4>Sauce</h4>
+                          <select name="sauceDropDown" id="sauceDropDown">
+                             <option value="">Choose a Sauce</option>
+                              <option value="0" selected="selected">Regular Tomato</option>
+                              <option value="0.99">Hearty Tomato  $0.99</option>
+                              <option value="1.99">BBQ Sauce $1.99</option>
+                          </select>
+                          
+                          <h4>Toppings</h4>
+                          <label><input type="checkbox" name="pepperoni" id="pepperoni" value=0.99>Pepperoni</label>
+                          <label><input type="checkbox" name="sausage" id="sausage" value=0.99>Sausage</label>
+                          <label><input type="checkbox" name="ham" id="ham" value=0.99>Ham</label>
+                          <label><input type="checkbox" name="bacon" id="bacon" value=0.99>Bacon</label>
+                          <label><input type="checkbox" name="salami" id="salami" value=0.99>Salami</label>
+                          <label><input type="checkbox" name="peppers" id="peppers" value=0.99>Peppers</label>
+                          <label><input type="checkbox" name="olives" id="olives" value=0.99>Olives</label>
+                          <label><input type="checkbox" name="jalapenos" id="jalapenos" value=0.99>Jalapenos</label>
+                          <label><input type="checkbox" name="mushrooms" id="mushrooms" value=0.99>Mushrooms</label>
+                          <label><input type="checkbox" name="pineapple" id="pineapple" value=0.99>Pineapple</label>
+                          <label><input type="checkbox" name="onion" id="onion" value=0.99>Onion</label>
+                   </div>
                </fieldset>
                
                <input type="button" id="inputMyInfo" value="Finished Building Pizza">
