@@ -4,7 +4,7 @@
       <meta charset="utf-8" />
         <title>Pizza Order Form</title>
        <style type="text/css">
-           #otherOption, #allAtOnce {
+           #otherOption, #allAtOnce, #invisibleBilling {
                display:none;
            }
            
@@ -20,10 +20,10 @@
    </head>
     <body>
         <main>
-           <aside id="totalPrice">This is your current Price: [REMEMBER TO UPDATE]</aside>
+           <aside id="totalPrice"></aside>
            <form action="#" name="billingInformation" id="billingInformation">
               <fieldset>
-              <legend>Billing Information</legend>
+              <legend>Delivery Information</legend>
                <label for="name">Name:</label>
                <input type="text" name="name" id="name" placeholder="Benjamin Franklin">
                <span>*</span><br>
@@ -71,7 +71,7 @@
                <span>*</span> <br>
                </fieldset>
                
-               <fieldset>
+               <fieldset id="pizzaBuilding">
                   <legend>Pizza Choices</legend>
                   
                   <h4 id="crustLabel">Crust</h4><span>*</span>
@@ -88,37 +88,103 @@
                      <div id="allAtOnce">
                          <h4>Cheese</h4>
                           <select name="cheeseTypes" id="cheeseTypes">
-                              <option value="0">Light</option>
-                              <option value="0" selected="selected">Normal</option>
-                              <option value="2.99">Extra (+$2.99)</option>
-                              <option value="3.99">Double (+$3.99)</option>
+                              <option value="0" id="lightCheese">Light</option>
+                              <option value="0" id="normalCheese" selected="selected">Normal</option>
+                              <option value="2.99" id="extraCheese">Extra (+$2.99)</option>
+                              <option value="3.99" id="doubleCheese">Double (+$3.99)</option>
                           </select>
 
                           <h4>Sauce</h4>
                           <select name="sauceDropDown" id="sauceDropDown">
-                             <option value="">Choose a Sauce</option>
-                              <option value="0" selected="selected">Regular Tomato</option>
-                              <option value="0.99">Hearty Tomato  $0.99</option>
-                              <option value="1.99">BBQ Sauce $1.99</option>
+                              <option value="0" id="regularSauce" selected="selected">Regular Tomato</option>
+                              <option id="heartyTomatoSauce" value="0.99">Hearty Tomato  $0.99</option>
+                              <option id="bbqSauce" value="1.99">BBQ Sauce $1.99</option>
                           </select>
                           
                           <h4>Toppings</h4>
-                          <label><input type="checkbox" name="pepperoni" id="pepperoni" value=0.99>Pepperoni</label>
-                          <label><input type="checkbox" name="sausage" id="sausage" value=0.99>Sausage</label>
-                          <label><input type="checkbox" name="ham" id="ham" value=0.99>Ham</label>
-                          <label><input type="checkbox" name="bacon" id="bacon" value=0.99>Bacon</label>
-                          <label><input type="checkbox" name="salami" id="salami" value=0.99>Salami</label>
-                          <label><input type="checkbox" name="peppers" id="peppers" value=0.99>Peppers</label>
-                          <label><input type="checkbox" name="olives" id="olives" value=0.99>Olives</label>
-                          <label><input type="checkbox" name="jalapenos" id="jalapenos" value=0.99>Jalapenos</label>
-                          <label><input type="checkbox" name="mushrooms" id="mushrooms" value=0.99>Mushrooms</label>
-                          <label><input type="checkbox" name="pineapple" id="pineapple" value=0.99>Pineapple</label>
-                          <label><input type="checkbox" name="onion" id="onion" value=0.99>Onion</label>
+                          <label><input type="checkbox" name="topping" id="pepperoni" value="0.99">Pepperoni</label>
+                          <label><input type="checkbox" name="topping" id="sausage" value="0.99">Sausage</label>
+                          <label><input type="checkbox" name="topping" id="ham" value="0.99">Ham</label>
+                          <label><input type="checkbox" name="topping" id="bacon" value="0.99">Bacon</label>
+                          <label><input type="checkbox" name="topping" id="salami" value="0.99">Salami</label>
+                          <label><input type="checkbox" name="topping" id="peppers" value="0.99">Peppers</label>
+                          <label><input type="checkbox" name="topping" id="olives" value="0.99">Olives</label>
+                          <label><input type="checkbox" name="topping" id="jalapenos" value="0.99">Jalapenos</label>
+                          <label><input type="checkbox" name="topping" id="mushrooms" value="0.99">Mushrooms</label>
+                          <label><input type="checkbox" name="topping" id="pineapple" value="0.99">Pineapple</label>
+                          <label><input type="checkbox" name="topping" id="onion" value="0.99">Onion</label>
                    </div>
                </fieldset>
                
-               <input type="button" id="inputMyInfo" value="Finished Building Pizza">
+               <input type="button" id="inputMyInfo" value="Finished Building Pizza"><br>
+               
+               <div id="invisibleBilling">
+                  <fieldset>
+              <legend>Billing Information</legend>
+              
+              <label><input type="checkbox" id="sameAsDelivery">Same as Delivery Information</label><br/>
+              
+               <label for="billingName">Name:</label>
+               <input type="text" name="billingName" id="billingName" placeholder="Benjamin Franklin">
+               <span>*</span><br>
+               
+               <label for="billingAdressStreet">Street:</label>
+               <input type="text" name="billingAddressStreet" id="billingAddressStreet" placeholder="843 Chestnut St.">
+               <span>*</span><br>
+               
+               <label for="billingAddressNumber">Apt/Suite/Room Number:</label>
+               <input type="text" name="billingAddressNumber" id="billingAddressNumber">
+               <span>(optional)</span><br>
+               
+               <label for="city">City:</label>
+               <input type="text" name="billingCity" id="billingCity" placeholder="Philadelphia">
+               <span>*</span><br>
+               
+               <label for ="state">State:</label>
+               <input type="text" name="billingState" id="billingState" placeholder="PA">
+               <span>*</span><br>
+               
+               <label for="zip">Zip Code:</label>
+               <input type="text" name="billingZip" id="billingZip" placeholder="19107">
+               <span>*</span><br>
+               
+               
+               <label for="cc">Credit Card Number:</label>
+               <input type="text" id="ccNum" name="cc">
+               <span>*</span><br>
+               
+               <label for="CVC">CVC Code:</label>
+               <input type="text" id="cvc" name ="cvc">
+               <span>*</span><br>
+               
+               <label for="exp">Expiration Date:</label><br>
+               <label id="monthLabel">Month:</label><span>*</span>
+               <select id="monthExp">
+                   <option value="0">Jan</option>
+                   <option value="1">Feb</option>
+                   <option value="2">Mar</option>
+                   <option value="3">Apr</option>
+                   <option value="4">May</option>
+                   <option value="5">Jun</option>
+                   <option value="6">Jul</option>
+                   <option value="7">Aug</option>
+                   <option value="8">Sept</option>
+                   <option value="9">Oct</option>
+                   <option value="10">Nov</option>
+                   <option value="11">Dec</option>
+               </select><br>
+               <label id="yearLabel">Year:</label><span>*</span>
+               <select id="yearExp"></select>
+               
+               
+               </fieldset>
+               
+               <input type="button" id="submitAll" value="Submit Your Order">
+               
+               </div>
            </form>
+           
+           
             
         </main>
         

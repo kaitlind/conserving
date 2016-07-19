@@ -76,6 +76,76 @@ var moveToAll = function(){
 };
 
 
+var calculate = function(){
+    //Crust Dough and Size
+    var sizeDoughPrice = x('crustSizes');
+    
+    //Cheese values
+    var lightCheese = x('lightCheese').value;
+    var normalCheese = x('normalCheese').value;
+    var extraCheese = x('extraCheese').value;
+    var dbleCheese = x('doubleCheese').value;
+    
+    //Sauce values
+    var tomatoSauce = x('regularSauce').value;
+    var heartyTomato = x('heartyTomatoSauce').value;
+    var bbqSauce = x('bbqSauce').value;
+    
+    //Toppings values
+    var toppings = document.getElementsByName('topping');
+    
+    //Default Values
+    var totalCheese = 0;
+    var totalSauce = 0;
+    var totalToppings = 0;
+    var totalDoughSize= 0;
+    
+    //HTML Element this appears inside
+    var aside = x('totalPrice');
+    
+    //Size selection
+    for (var p = 0; p < sizeDoughPrice.options.length; p++){        
+        if (sizeDoughPrice.options[p].selected){
+            totalDoughSize += parseFloat(sizeDoughPrice.options[p].value);
+        }
+    }
+        
+    
+    //Cheese Selection
+    if (x('lightCheese').selected){
+        totalCheese += parseFloat(lightCheese);
+    } else if (x('normalCheese').selected){
+        totalCheese += parseFloat(normalCheese);
+    } else if (x('extraCheese').selected){
+        totalCheese += parseFloat(extraCheese);
+    } else if (x('doubleCheese').selected){
+        totalCheese += parseFloat(dbleCheese);
+    } 
+    
+    //Sauce Selection
+    if (x('regularSauce').selected){
+        totalSauce += parseFloat(tomatoSauce);
+    } else if (x('heartyTomatoSauce').selected){
+        totalSauce += parseFloat(heartyTomato);
+    } else if (x('bbqSauce').selected){
+        totalSauce += parseFloat(bbqSauce);
+    } 
+    
+    //Toppings Selection
+    for (var i=0;i<toppings.length;i++){
+        if (toppings[i].checked){
+            totalToppings += parseFloat(toppings[i].value);
+        }
+    }
+    
+    var grandTotal = eval(totalCheese + totalSauce + totalToppings+totalDoughSize)
+    
+    if (isNaN(grandTotal)== true){
+        aside.innerHTML = 'Total = $0';
+    } else {
+        aside.innerHTML = 'Total = $' + grandTotal;
+    }
+};
 
             
 var submitInfo = function(){
@@ -102,7 +172,7 @@ var submitInfo = function(){
         var glutenFreeCrust = x('glutenFree');
         var sizeValue = x('crustSizes').value;
     
-    
+  /*  
     //Validate Name            
         if(name == '' || name == ' '){
             x('name').nextElementSibling.firstChild.nodeValue = 'This field is required.';
@@ -217,21 +287,168 @@ var submitInfo = function(){
             }  
         };
         
-        isEmail(email);
-    
-    
-            
-        
+        isEmail(email);*/
                 
         if(isValid == true){
-            x('billingInformation').submit();
+            var done = confirm("Are you sure you're done with your order?");
+            if (done == true){
+
+                
+                    //x('billingInformation').submit();
+                
+                var billingDiv = x('invisibleBilling');
+                billingDiv.style.display = "block";
+                
+                //console.log(sameAsDelivery.value)
+                
+                
+            }
         }
 };
+
+var autoPopulate = function(){
+    var name = x('name').value;
+    var addressNumber = x('addressNumber').value;
+    var billingName = x('billingName').value;
+    var billingAddressStreet = x('billingAddressStreet').value;
+    var billingAddressNumber = x('billingAddressNumber').value;
+    var billingCity = x('billingCity').value;
+    var billingState = x('billingState').value;
+    var billingZip = x('billingZip').value;
+    var sameAsDelivery = x('sameAsDelivery');
+    
+    if(sameAsDelivery.checked){
+            console.log('a')
+            billingName = name;
+            billingAddressStreet = addressStreet;
+            billingAddressNumber = addressNumber;
+        console.log(billingName);
+        
+            x('billingName').innerHTML= name;
+
+        }
+}
+
+var submitEntireForm = function(){
+        var isValid = true;
+                
+        var name= x('name').value;
+        var addressType = x('addressType').value;
+        var addressStreet= x('addressStreet').value;
+        var city = x('city').value;
+        var state = x('state').value;
+        var zip = x('zip').value;
+        var phone = x('phone').value;
+        var email = x('email').value;
+    
+        var billingName = x('billingName').value;
+        var billingAddressStreet = x('billingAddressStreet').value;
+        var billingAddressNumber = x('billingAddressNumber').value;
+        var billingCity = x('billingCity').value;
+        var billingState = x('billingState').value;
+        var billingZip = x('billingZip').value;
+        var ccNum = x('ccNum').value;
+        var cvc = x('cvc').value;
+        var yearExp = x('yearExp').value;
+        var monthExp = x('monthExp').value;
+        
+        var namePattern = /[a-z \-A-Z]/;
+        var zipPattern = /^\d{5}?$/;
+        var phonePattern = /^\d{3}-\d{3}-\d{4}$/;
+        var statePattern = /^[a-zA-Z]{2}$/;
+        var ccPattern = /^\d{4}-\d{4}-\d{4}-\d{4}$/;
+        var cvcPattern = /^\d{3}$/;
+    
+    var currentDate = new Date();
+    console.log(currentDate)
+    
+    
+     if(billingName == '' || billingName == ' '){
+            x('billingName').nextElementSibling.firstChild.nodeValue = 'This field is required.';
+            isValid = false;
+        } else if( !billingName.match(namePattern)) {
+            x('billingName').nextElementSibling.firstChild.nodeValue = 'Names must only contain letters.';
+            isValid = false;
+        } else {
+            x('billingName').nextElementSibling.firstChild.nodeValue = '';
+        }
+    //Validate Address Street
+        if(billingAddressStreet == '' || billingAddressStreet== ' '){
+            x('billingAddressStreet').nextElementSibling.firstChild.nodeValue = 'This field is required';
+            isValid = false;
+        } else {
+            x('billingAddressStreet').nextElementSibling.firstChild.nodeValue = '';
+        }
+    //Validate City
+        if(billingCity == '' || billingCity == ' '){
+            x('billingCity').nextElementSibling.firstChild.nodeValue = 'This field is required.';
+            isValid = false;
+        } else {
+            x('billingCity').nextElementSibling.firstChild.nodeValue = '';
+        }
+    //Validate State
+        if(billingState == '' || billingState == ' '){
+            x('billingState').nextElementSibling.firstChild.nodeValue = 'This field is required.';
+            isValid = false;
+        } else if( !billingState.match(statePattern)){
+            x('billingState').nextElementSibling.firstChild.nodeValue = 'Please format using state abbreviations.'
+            isValid = false;
+        } else {
+            x('billingState').nextElementSibling.firstChild.nodeValue = '';
+        }
+    //Validate Zip Code
+        if(billingZip == '' || billingZip == ' '){
+            x('billingZip').nextElementSibling.firstChild.nodeValue = 'This field is required.';
+            isValid = false;
+        } else if( !billingZip.match(zipPattern)){
+            x('billingZip').nextElementSibling.firstChild.nodeValue = 'Please format this zip code using 5 numbers.';
+            isValid = false;
+        } else {
+            x('billingZip').nextElementSibling.firstChild.nodeValue = '';
+        }
+    //Validate Credit Card
+        if(ccNum == '' || ccNum == ' '){
+            x('ccNum').nextElementSibling.firstChild.nodeValue = 'This field is required.';
+            isValid = false;
+        } else if ( !ccNum.match(ccPattern)){
+            x('ccNum').nextElementSibling.firstChild.nodeValue = 'Please format using 9999-9999-9999-9999 pattern.';
+            isValid = false;
+        } else {
+            x('ccNum').nextElementSibling.firstChild.nodeValue = '';
+        }
+    //Validate CVC
+        if (cvc == '' || cvc == ' '){
+            x('cvc').nextElementSibling.firstChild.nodeValue = 'This field is required.';
+            isValid = false;
+        } else if (!cvc.match(cvcPattern)){
+            x('cvc').nextElementSibling.firstChild.nodeValue = 'The CVC code is the 3 letters on the back of your credit card.';
+            isValid = false;
+        } else {
+            x('cvc').nextElementSibling.firstChild.nodeValue = '';
+        }
+    //Validate The Year is Filled In
+        if ( yearExp == '' || yearExp == ' '){
+            x('yearLabel').nextElementSibling.firstChild.nodeValue = 'This field is required.';
+            isValid = false;
+        } else {
+            x('yearLabel').nextElementSibling.firstChild.nodeValue = '';
+        }
+    //Validate the Month is Filled In
+        if (monthExp == '' || monthExp == ' '){
+            x('monthLabel').nextElementSibling.firstChild.nodeValue = 'This field is required.';
+            isValid = false;
+        } else {
+            x('monthLabel').nextElementSibling.firstChild.nodeValue = '';
+        }
+    
+    //Check if it's correctly filled out or not
+    if(isValid == true){
+        x('billingInformation').submit();
+    }
+}
+
             
 window.onload = function(){
-var x = function(id){
-    return document.getElementById(id);
-}
     x('inputMyInfo').onclick = submitInfo;
     x('addressType').onchange = hideShow;
     x('handTossed').onchange = populateCrusts;
@@ -239,6 +456,9 @@ var x = function(id){
     x('nyStyle').onchange = populateCrusts;
     x('glutenFree').onchange = populateCrusts;
     x('crustSizes').onchange = moveToAll;
+    x('pizzaBuilding').onchange = calculate;
+    x('sameAsDelivery').onchange = autoPopulate;
+    x('submitAll').onclick = submitEntireForm;
 };
 
 //x('crustSizes').addEventListener('change', moveToCheese, false);
