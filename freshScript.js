@@ -360,7 +360,13 @@ var submitEntireForm = function(){
         var cvcPattern = /^\d{3}$/;
     
     var currentDate = new Date();
-    console.log(currentDate)
+    var currentYear = currentDate.getFullYear();
+    var currentMonth = currentDate.getMonth();
+    console.log(currentMonth + " " + currentYear)
+    
+//    if(daysMonth && yearTime){
+//        
+//    }
     
     
      if(billingName == '' || billingName == ' '){
@@ -430,12 +436,18 @@ var submitEntireForm = function(){
         if ( yearExp == '' || yearExp == ' '){
             x('yearLabel').nextElementSibling.firstChild.nodeValue = 'This field is required.';
             isValid = false;
+        } else if (yearExp < currentYear) {
+            x('yearLabel').nextElementSibling.firstChild.nodeValue = 'You\'ve chosen a year that has already passed.';
+            isValid = false;
         } else {
             x('yearLabel').nextElementSibling.firstChild.nodeValue = '';
         }
     //Validate the Month is Filled In
         if (monthExp == '' || monthExp == ' '){
             x('monthLabel').nextElementSibling.firstChild.nodeValue = 'This field is required.';
+            isValid = false;
+        } else if (monthExp < currentMonth && yearExp <= currentDate){
+            x('monthLabel').nextElementSibling.firstChild.nodeValue = 'You\'ve chosen a date that has already passed.';
             isValid = false;
         } else {
             x('monthLabel').nextElementSibling.firstChild.nodeValue = '';
