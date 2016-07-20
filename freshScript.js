@@ -172,7 +172,7 @@ var submitInfo = function(){
         var glutenFreeCrust = x('glutenFree');
         var sizeValue = x('crustSizes').value;
     
-  /*  
+    
     //Validate Name            
         if(name == '' || name == ' '){
             x('name').nextElementSibling.firstChild.nodeValue = 'This field is required.';
@@ -283,11 +283,11 @@ var submitInfo = function(){
                 isValid = false
             } else {
                 x('email').nextElementSibling.firstChild.nodeValue = '';
-                isValid = true;
+                
             }  
         };
         
-        isEmail(email);*/
+        isEmail(email);
                 
         if(isValid == true){
             var done = confirm("Are you sure you're done with your order?");
@@ -302,32 +302,35 @@ var submitInfo = function(){
                 //console.log(sameAsDelivery.value)
                 
                 
-            }
-        }
+            };
+        };
 };
 
 var autoPopulate = function(){
     var name = x('name').value;
     var addressNumber = x('addressNumber').value;
-    var billingName = x('billingName').value;
-    var billingAddressStreet = x('billingAddressStreet').value;
-    var billingAddressNumber = x('billingAddressNumber').value;
-    var billingCity = x('billingCity').value;
-    var billingState = x('billingState').value;
-    var billingZip = x('billingZip').value;
+    var addressStreet = x('addressStreet').value;
+    var city = x('city').value;
+    var state = x('state').value;
+    var zip = x('zip').value;
     var sameAsDelivery = x('sameAsDelivery');
     
     if(sameAsDelivery.checked){
-            console.log('a')
-            billingName = name;
-            billingAddressStreet = addressStreet;
-            billingAddressNumber = addressNumber;
-        console.log(billingName);
+        var billingId = x('billingName');
+        var billingAddressStreet = x('billingAddressStreet');
+        var billingAddressNumber = x('billingAddressNumber');
+        var billingCity = x('billingCity');
+        var billingState = x('billingState');
+        var billingZip = x('billingZip');
         
-            x('billingName').innerHTML= name;
-
-        }
-}
+        billingId.value = name;         
+        billingAddressStreet.value = addressStreet;
+        billingAddressNumber.value = addressNumber;
+        billingCity.value = city;
+        billingState.value = state;
+        billingZip.value = zip;
+    } 
+};
 
 var submitEntireForm = function(){
         var isValid = true;
@@ -359,15 +362,9 @@ var submitEntireForm = function(){
         var ccPattern = /^\d{4}-\d{4}-\d{4}-\d{4}$/;
         var cvcPattern = /^\d{3}$/;
     
-    var currentDate = new Date();
-    var currentYear = currentDate.getFullYear();
-    var currentMonth = currentDate.getMonth();
-    console.log(currentMonth + " " + currentYear)
-    
-//    if(daysMonth && yearTime){
-//        
-//    }
-    
+        var currentDate = new Date();
+        var currentYear = currentDate.getFullYear();
+        var currentMonth = currentDate.getMonth();
     
      if(billingName == '' || billingName == ' '){
             x('billingName').nextElementSibling.firstChild.nodeValue = 'This field is required.';

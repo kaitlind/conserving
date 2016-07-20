@@ -2,7 +2,27 @@
 <html lang="en">
    <head>
       <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Pizza Order Form</title>
+        
+            <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+        
        <style type="text/css">
            #otherOption, #allAtOnce, #invisibleBilling {
                display:none;
@@ -19,13 +39,25 @@
        </style>
    </head>
     <body>
+       <div class="container">
+       
+       <div class="header clearfix">
+      </div>
+
+      <div class="jumbotron">
+        <h1>Emma's Fresh Pizza</h1>
+        <p class="lead"><img src="EmmasPizza.png" alt="pizza logo">Let us serve you some grub!</p>
+      </div>
+       
+       
+       
         <main>
            <aside id="totalPrice"></aside>
            <form action="#" name="billingInformation" id="billingInformation">
               <fieldset>
               <legend>Delivery Information</legend>
                <label for="name">Name:</label>
-               <input type="text" name="name" id="name" placeholder="Benjamin Franklin">
+               <input type="text" id="name" placeholder="Benjamin Franklin">
                <span>*</span><br>
                
                <label for="addressType">Address Type:</label>
@@ -119,13 +151,13 @@
                <input type="button" id="inputMyInfo" value="Finished Building Pizza"><br>
                
                <div id="invisibleBilling">
-                  <fieldset>
+                  <fieldset id="billingFieldset">
               <legend>Billing Information</legend>
               
               <label><input type="checkbox" id="sameAsDelivery">Same as Delivery Information</label><br/>
               
                <label for="billingName">Name:</label>
-               <input type="text" name="billingName" id="billingName" placeholder="Benjamin Franklin">
+               <input type="text" name="billingName" id="billingName" placeholder="Benjamin Franklin" />
                <span>*</span><br>
                
                <label for="billingAdressStreet">Street:</label>
@@ -195,6 +227,9 @@
            
             
         </main>
+        
+        <footer><a href="http://www.freepik.com/free-photos-vectors/logo">Logo vector designed by Freepik</a></footer>
+        </div><!-- end container -->
         
         <script src="freshScript.js"></script>
     </body>
